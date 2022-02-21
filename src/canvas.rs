@@ -1,4 +1,4 @@
-use crate::color::Color;
+use crate::color::{mix_colors, Color};
 use crate::shape::Drawable;
 
 #[derive(Clone)]
@@ -42,7 +42,7 @@ impl Canvas {
 
     pub fn background(&mut self, color: Color) {
         for pixel in self.pixels.iter_mut() {
-            *pixel = color;
+            *pixel = mix_colors(*pixel, color);
         }
     }
 
