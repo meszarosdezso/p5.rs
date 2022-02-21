@@ -1,4 +1,5 @@
 use crate::color::Color;
+use crate::shape::Drawable;
 
 #[derive(Clone)]
 pub struct Canvas {
@@ -29,6 +30,10 @@ impl Canvas {
         for pixel in self.pixels.iter_mut() {
             *pixel = color;
         }
+    }
+
+    pub fn add<D: Drawable>(&mut self, drawable: D) {
+        drawable.draw(self);
     }
 
     pub(crate) fn get_frame(&self) -> &Vec<Color> {
