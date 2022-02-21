@@ -20,6 +20,7 @@ fn main() {
 
 fn draw(canvas: &mut Canvas, context: &mut Context) {
     canvas.background([0x50, 0x60, context.blue, 0xff]);
+    canvas.stroke([0xff, 0xff, 0, 0x88]);
 
     context.blue += 1;
 

@@ -2,12 +2,19 @@ use crate::color::Color;
 use crate::shape::Drawable;
 
 #[derive(Clone)]
+pub(crate) struct CanvasState {
+    pub(crate) stroke: Color,
+}
+
+#[derive(Clone)]
 pub struct Canvas {
     pub(crate) width: u32,
     pub(crate) height: u32,
 
     /// Vector of RGBA values
     pub(crate) pixels: Vec<Color>,
+
+    pub(crate) state: CanvasState,
 }
 
 impl Canvas {
@@ -23,7 +30,14 @@ impl Canvas {
             width,
             height,
             pixels,
+            state: CanvasState {
+                stroke: [255, 255, 255, 255],
+            },
         }
+    }
+
+    pub fn stroke(&mut self, color: Color) {
+        self.state.stroke = color;
     }
 
     pub fn background(&mut self, color: Color) {
