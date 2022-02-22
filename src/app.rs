@@ -1,5 +1,4 @@
 use pixels::{Pixels, SurfaceTexture};
-use std::ops::DerefMut;
 use std::process;
 use std::sync::{Arc, Mutex};
 use std::time::SystemTime;
@@ -96,13 +95,10 @@ impl<C> App<C> {
                     pixels.resize_surface(size.width, size.height)
                 }
                 Event::RedrawRequested(_window_id) => {
-                    let canvas = Arc::clone(&canvas);
                     let mut canvas = canvas.lock().unwrap();
-
-                    let context = Arc::clone(&context);
                     let mut context = context.lock().unwrap();
 
-                    draw_fn(canvas.deref_mut(), context.deref_mut());
+                    draw_fn(&mut canvas, &mut context);
 
                     let frame = canvas.get_frame();
 

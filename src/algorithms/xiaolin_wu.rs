@@ -1,5 +1,6 @@
 use crate::shape::point::Point;
 
+/// https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm
 pub(crate) fn xiaolin_wu_line(x0: f32, y0: f32, x1: f32, y1: f32) -> Vec<Point> {
     let mut pixels = Vec::new();
 
@@ -129,7 +130,6 @@ fn plot(x: f32, y: f32, brightness: f32) -> Point {
     point
 }
 
-// integer part of x
 fn ipart(x: f32) -> f32 {
     x.floor()
 }
@@ -138,7 +138,6 @@ fn round(x: f32) -> f32 {
     ipart(x + 0.5)
 }
 
-// fractional part of x
 fn fpart(x: f32) -> f32 {
     x - x.floor()
 }
